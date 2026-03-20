@@ -11,8 +11,8 @@ import pandas as pd
 
 # === CONFIGURATION ===
 
-DATA_FILE = pathlib.Path("resources/Atsakymai_Antroji institucijų apklausa dėl mokslinių tyrimų duomenų valdymo praktikų.xlsx")
-OUTPUT_DIR = pathlib.Path("output")
+DATA_FILE = pathlib.Path("resources/questionaire_2.xlsx")
+OUTPUT_DIR = pathlib.Path("visuals_2")
 
 # Clean minimal palette — muted, distinguishable
 COLORS = ["#4878A8", "#E07850", "#5BA05B", "#C75DA2", "#C4A94D", "#7A7A7A",
@@ -52,8 +52,9 @@ def save_fig(fig, filename):
     OUTPUT_DIR.mkdir(exist_ok=True)
     fig.savefig(OUTPUT_DIR / f"{filename}.png")
     fig.savefig(OUTPUT_DIR / f"{filename}.pdf")
+    fig.savefig(OUTPUT_DIR / f"{filename}.svg")
     plt.close(fig)
-    print(f"  Saved {filename}.png + .pdf")
+    print(f"  Saved {filename}.png + .pdf + .svg")
 
 
 def horizontal_bar(data, labels, title, filename, color=None):

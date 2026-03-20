@@ -18,7 +18,7 @@ import pandas as pd
 # === CONFIGURATION ===
 
 DATA_FILE = pathlib.Path("resources/questionarie_3.xlsx")
-OUTPUT_DIR = pathlib.Path("vizualai_3")
+OUTPUT_DIR = pathlib.Path("visuals_3")
 
 COLORS = ["#4878A8", "#E07850", "#5BA05B", "#C75DA2", "#C4A94D", "#7A7A7A",
           "#D4695A", "#48A0A8", "#8B6DAF", "#A0A050"]
@@ -67,8 +67,9 @@ def save_fig(fig, filename):
     OUTPUT_DIR.mkdir(exist_ok=True)
     fig.savefig(OUTPUT_DIR / f"{filename}.png")
     fig.savefig(OUTPUT_DIR / f"{filename}.pdf")
+    fig.savefig(OUTPUT_DIR / f"{filename}.svg")
     plt.close(fig)
-    print(f"  Saved {filename}.png + .pdf")
+    print(f"  Saved {filename}.png + .pdf + .svg")
 
 
 # === CHART FUNCTIONS ===
