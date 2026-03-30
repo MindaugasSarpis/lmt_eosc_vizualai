@@ -1,0 +1,69 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[lithuanian]{babel}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, shadows, fit, backgrounds}
+
+\definecolor{mainblue}{RGB}{41, 98, 255}
+\definecolor{cat1}{RGB}{66, 165, 245}
+\definecolor{cat2}{RGB}{102, 187, 106}
+
+\tikzstyle{maintitle} = [rectangle, rounded corners=8pt, minimum width=5cm, minimum height=1.2cm,
+    text centered, draw=mainblue, fill=mainblue, text=white, font=\bfseries\Large, drop shadow]
+\tikzstyle{category} = [rectangle, rounded corners=5pt, minimum width=5cm, minimum height=0.9cm,
+    text centered, font=\bfseries\small, drop shadow]
+\tikzstyle{item} = [rectangle, rounded corners=3pt, minimum width=5cm, minimum height=0.55cm,
+    text centered, font=\footnotesize]
+\tikzstyle{arrow} = [thick, ->, >=Stealth]
+
+\begin{document}
+\begin{tikzpicture}[node distance=0.8cm]
+
+% Main title
+\node (main) [maintitle, text width=12cm]
+    {ES mokslinių tyrimų duomenų teisinė ir strateginė bazė};
+
+% Top level
+\node (strategy) [category, below=1.2cm of main, draw=mainblue, fill=mainblue!15,
+    minimum width=8cm, font=\bfseries]
+    {Europos duomenų strategija (2020)};
+
+% Two branches
+\node (teises) [category, below=1.5cm of strategy, xshift=-5cm, draw=cat1, fill=cat1!20]
+    {ES teisės aktai};
+\node (iniciat) [category, below=1.5cm of strategy, xshift=5cm, draw=cat2, fill=cat2!20]
+    {Strateginės iniciatyvos};
+
+% Teisės aktai items
+\node (t1) [item, below=0.5cm of teises, draw=cat1!60, fill=cat1!10, text width=5.5cm]
+    {Atvirųjų duomenų direktyva (2019/1024)};
+\node (t2) [item, below=0.25cm of t1, draw=cat1!60, fill=cat1!10, text width=5.5cm]
+    {Duomenų valdymo aktas (DGA, 2022)};
+\node (t3) [item, below=0.25cm of t2, draw=cat1!60, fill=cat1!10, text width=5.5cm]
+    {Duomenų aktas (Data Act, 2023)};
+\node (t4) [item, below=0.25cm of t3, draw=cat1!60, fill=cat1!10, text width=5.5cm]
+    {BDAR (2016/679)};
+\node (t5) [item, below=0.25cm of t4, draw=cat1!60, fill=cat1!10, text width=5.5cm]
+    {DI aktas (AI Act, 2024)};
+
+% Iniciatyvos items
+\node (i1) [item, below=0.5cm of iniciat, draw=cat2!60, fill=cat2!10, text width=5.5cm]
+    {EOSC federacija};
+\node (i2) [item, below=0.25cm of i1, draw=cat2!60, fill=cat2!10, text width=5.5cm]
+    {DI mokslui strategija (2025)};
+\node (i3) [item, below=0.25cm of i2, draw=cat2!60, fill=cat2!10, text width=5.5cm]
+    {Duomenų sąjungos strategija (2025)};
+\node (i4) [item, below=0.25cm of i3, draw=cat2!60, fill=cat2!10, text width=5.5cm]
+    {EMTE politikos darbotvarkė (2025--2027)};
+
+% Arrows
+\draw [arrow, mainblue] (main.south) -- (strategy.north);
+\draw [arrow, cat1] (strategy.south) -- ++(0,-0.3) -| (teises.north);
+\draw [arrow, cat2] (strategy.south) -- ++(0,-0.3) -| (iniciat.north);
+
+% Vertical connectors
+\draw [cat1, thick] (teises.south) -- (t1.north);
+\draw [cat2, thick] (iniciat.south) -- (i1.north);
+
+\end{tikzpicture}
+\end{document}

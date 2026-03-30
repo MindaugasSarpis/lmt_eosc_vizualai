@@ -1,0 +1,79 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[lithuanian]{babel}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, shadows, fit, backgrounds}
+
+\definecolor{mainblue}{RGB}{41, 98, 255}
+\definecolor{cat1}{RGB}{66, 165, 245}
+\definecolor{cat2}{RGB}{102, 187, 106}
+\definecolor{cat3}{RGB}{255, 167, 38}
+\definecolor{cat4}{RGB}{171, 71, 188}
+\definecolor{cat5}{RGB}{239, 83, 80}
+
+\tikzstyle{maintitle} = [rectangle, rounded corners=8pt, minimum width=5cm, minimum height=1.2cm,
+    text centered, draw=mainblue, fill=mainblue, text=white, font=\bfseries\Large, drop shadow]
+\tikzstyle{category} = [rectangle, rounded corners=5pt, minimum width=3.8cm, minimum height=0.9cm,
+    text centered, font=\bfseries\small, drop shadow]
+\tikzstyle{item} = [rectangle, rounded corners=3pt, minimum width=3.5cm, minimum height=0.55cm,
+    text centered, font=\footnotesize]
+\tikzstyle{example} = [rectangle, rounded corners=2pt, minimum width=3.5cm,
+    text centered, font=\scriptsize\itshape, text=gray!70!black]
+\tikzstyle{arrow} = [thick, ->, >=Stealth]
+
+\begin{document}
+\begin{tikzpicture}[node distance=0.8cm]
+
+% Main title
+\node (main) [maintitle, text width=12cm] {Mokslinių duomenų klasifikacija pagal generavimo pobūdį};
+
+% Categories - 5 columns evenly spaced
+\node (stebej) [category, below=1.8cm of main, xshift=-8cm, draw=cat1, fill=cat1!20] {Stebėjimų};
+\node (eksper) [category, below=1.8cm of main, xshift=-4cm, draw=cat2, fill=cat2!20] {Eksperimentiniai};
+\node (simul) [category, below=1.8cm of main, xshift=0cm, draw=cat3, fill=cat3!20] {Simuliacijų};
+\node (isvest) [category, below=1.8cm of main, xshift=4cm, draw=cat4, fill=cat4!20] {Išvestiniai};
+\node (sintet) [category, below=1.8cm of main, xshift=8cm, draw=cat5, fill=cat5!20] {Sintetiniai};
+
+% Stebėjimų items
+\node (jutikliai) [item, below=0.5cm of stebej, draw=cat1!60, fill=cat1!10] {Jutiklių rodmenys};
+\node (teleskopai) [item, below=0.3cm of jutikliai, draw=cat1!60, fill=cat1!10] {Teleskopų nuotraukos};
+\node (palydovai) [item, below=0.3cm of teleskopai, draw=cat1!60, fill=cat1!10] {Palydovų duomenys};
+\node (steb_ex) [example, below=0.2cm of palydovai] {(realaus laiko srautai)};
+
+% Eksperimentiniai items
+\node (genai) [item, below=0.5cm of eksper, draw=cat2!60, fill=cat2!10] {Genų sekos};
+\node (chromat) [item, below=0.3cm of genai, draw=cat2!60, fill=cat2!10] {Chromatogramos};
+\node (labmat) [item, below=0.3cm of chromat, draw=cat2!60, fill=cat2!10] {Lab. matavimai};
+\node (eksp_ex) [example, below=0.2cm of labmat] {(dažnai patentuoti formatai)};
+
+% Simuliacijų items
+\node (klimatas) [item, below=0.5cm of simul, draw=cat3!60, fill=cat3!10] {Klimato modeliai};
+\node (moldin) [item, below=0.3cm of klimatas, draw=cat3!60, fill=cat3!10] {Molekulinė dinamika};
+\node (simul_ex) [example, below=0.2cm of moldin] {(NetCDF, HDF5)};
+
+% Išvestiniai items
+\node (metaan) [item, below=0.5cm of isvest, draw=cat4!60, fill=cat4!10] {Metaanalizės};
+\node (mlrez) [item, below=0.3cm of metaan, draw=cat4!60, fill=cat4!10] {ML modelių rezultatai};
+\node (isv_ex) [example, below=0.2cm of mlrez] {(data mining)};
+
+% Sintetiniai items
+\node (ditren) [item, below=0.5cm of sintet, draw=cat5!60, fill=cat5!10] {DI treniravimo duomenys};
+\node (privim) [item, below=0.3cm of ditren, draw=cat5!60, fill=cat5!10] {Privatumo imitacijos};
+\node (sint_ex) [example, below=0.2cm of privim] {(mažų imčių sprendimas)};
+
+% Arrows from main to categories
+\draw [arrow, cat1] (main.south) -- ++(0,-0.4) -| (stebej.north);
+\draw [arrow, cat2] (main.south) -- ++(0,-0.4) -| (eksper.north);
+\draw [arrow, cat3] (main.south) -- ++(0,-0.4) -| (simul.north);
+\draw [arrow, cat4] (main.south) -- ++(0,-0.4) -| (isvest.north);
+\draw [arrow, cat5] (main.south) -- ++(0,-0.4) -| (sintet.north);
+
+% Vertical connectors
+\draw [cat1, thick] (stebej.south) -- (jutikliai.north);
+\draw [cat2, thick] (eksper.south) -- (genai.north);
+\draw [cat3, thick] (simul.south) -- (klimatas.north);
+\draw [cat4, thick] (isvest.south) -- (metaan.north);
+\draw [cat5, thick] (sintet.south) -- (ditren.north);
+
+\end{tikzpicture}
+\end{document}

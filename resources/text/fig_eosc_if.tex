@@ -1,0 +1,66 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[lithuanian]{babel}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, shadows, fit, backgrounds}
+
+\definecolor{mainblue}{RGB}{41, 98, 255}
+\definecolor{layer1}{RGB}{66, 165, 245}
+\definecolor{layer2}{RGB}{102, 187, 106}
+\definecolor{layer3}{RGB}{255, 167, 38}
+\definecolor{layer4}{RGB}{171, 71, 188}
+
+\tikzstyle{maintitle} = [rectangle, rounded corners=8pt, minimum width=5cm, minimum height=1.2cm,
+    text centered, draw=mainblue, fill=mainblue, text=white, font=\bfseries\Large, drop shadow]
+\tikzstyle{layer} = [rectangle, rounded corners=5pt, minimum width=10cm, minimum height=1.2cm,
+    text centered, font=\bfseries\small, drop shadow]
+\tikzstyle{detail} = [rectangle, rounded corners=3pt, minimum width=3.2cm, minimum height=0.55cm,
+    text centered, font=\footnotesize]
+\tikzstyle{arrow} = [thick, ->, >=Stealth]
+
+\begin{document}
+\begin{tikzpicture}[node distance=0.6cm]
+
+% Main title
+\node (main) [maintitle, text width=8cm] {EOSC sąveikumo sistema};
+
+% Layer 4 - Legal (top layer, purple)
+\node (legal) [layer, below=1.2cm of main, draw=layer4, fill=layer4!20] {Teisinis sąveikumas};
+\node (leg1) [detail, right=0.8cm of legal, draw=layer4!60, fill=layer4!10] {Licencijos};
+\node (leg2) [detail, right=0.3cm of leg1, draw=layer4!60, fill=layer4!10] {BDAR atitiktis};
+\node (leg3) [detail, right=0.3cm of leg2, draw=layer4!60, fill=layer4!10] {Naudojimo sąlygos};
+
+% Layer 3 - Organizational (orange)
+\node (org) [layer, below=0.8cm of legal, draw=layer3, fill=layer3!20] {Organizacinis sąveikumas};
+\node (org1) [detail, right=0.8cm of org, draw=layer3!60, fill=layer3!10] {Procesų dokumentavimas};
+\node (org2) [detail, right=0.3cm of org1, draw=layer3!60, fill=layer3!10] {SLA susitarimai};
+\node (org3) [detail, right=0.3cm of org2, draw=layer3!60, fill=layer3!10] {Vaidmenų valdymas};
+
+% Layer 2 - Semantic (green)
+\node (sem) [layer, below=0.8cm of org, draw=layer2, fill=layer2!20] {Semantinis sąveikumas};
+\node (sem1) [detail, right=0.8cm of sem, draw=layer2!60, fill=layer2!10] {Ontologijos, tezaurai};
+\node (sem2) [detail, right=0.3cm of sem1, draw=layer2!60, fill=layer2!10] {Metaduomenų schemos};
+\node (sem3) [detail, right=0.3cm of sem2, draw=layer2!60, fill=layer2!10] {FAIR Digital Objects};
+
+% Layer 1 - Technical (bottom layer, blue)
+\node (tech) [layer, below=0.8cm of sem, draw=layer1, fill=layer1!20] {Techninis sąveikumas};
+\node (tech1) [detail, right=0.8cm of tech, draw=layer1!60, fill=layer1!10] {API ir protokolai};
+\node (tech2) [detail, right=0.3cm of tech1, draw=layer1!60, fill=layer1!10] {PID infrastruktūra};
+\node (tech3) [detail, right=0.3cm of tech2, draw=layer1!60, fill=layer1!10] {AAI autentifikavimas};
+
+% Arrow from title
+\draw [arrow, mainblue] (main.south) -- (legal.north);
+
+% Connectors between layers (bidirectional)
+\draw [layer4, thick, <->] (legal.south) -- (org.north);
+\draw [layer3, thick, <->] (org.south) -- (sem.north);
+\draw [layer2, thick, <->] (sem.south) -- (tech.north);
+
+% Connectors to details
+\draw [layer4!60, thick] (legal.east) -- (leg1.west);
+\draw [layer3!60, thick] (org.east) -- (org1.west);
+\draw [layer2!60, thick] (sem.east) -- (sem1.west);
+\draw [layer1!60, thick] (tech.east) -- (tech1.west);
+
+\end{tikzpicture}
+\end{document}

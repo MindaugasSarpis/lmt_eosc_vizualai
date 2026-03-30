@@ -1,0 +1,66 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[lithuanian]{babel}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, shadows, fit, backgrounds}
+
+\definecolor{mainblue}{RGB}{41, 98, 255}
+\definecolor{cat1}{RGB}{66, 165, 245}
+\definecolor{cat2}{RGB}{102, 187, 106}
+\definecolor{cat3}{RGB}{255, 167, 38}
+\definecolor{cat4}{RGB}{171, 71, 188}
+\definecolor{cat5}{RGB}{239, 83, 80}
+\definecolor{cat6}{RGB}{78, 205, 196}
+
+\tikzstyle{maintitle} = [rectangle, rounded corners=8pt, minimum width=5cm, minimum height=1.2cm,
+    text centered, draw=mainblue, fill=mainblue, text=white, font=\bfseries\Large, drop shadow]
+\tikzstyle{category} = [rectangle, rounded corners=5pt, minimum width=4.2cm, minimum height=0.9cm,
+    text centered, font=\bfseries\small, drop shadow]
+\tikzstyle{example} = [rectangle, rounded corners=2pt, minimum width=4cm,
+    text centered, font=\scriptsize\itshape, text=gray!70!black]
+\tikzstyle{arrow} = [thick, ->, >=Stealth]
+
+\begin{document}
+\begin{tikzpicture}
+
+% Central node
+\node (center) [maintitle, text width=6cm] {Duomenų stiuardo kompetencijos};
+
+% 6 competencies arranged around center
+% Top row
+\node (c1) [category, above right=2.5cm and -1cm of center, xshift=-4cm, draw=cat1, fill=cat1!20]
+    {Duomenų valdymas};
+\node (c1ex) [example, below=0.15cm of c1] {vientisumas, saugumas, kokybė};
+
+\node (c2) [category, above right=2.5cm and -1cm of center, xshift=4cm, draw=cat2, fill=cat2!20]
+    {FAIR principų taikymas};
+\node (c2ex) [example, below=0.15cm of c2] {randami, prieinami, sąveikūs};
+
+% Middle row
+\node (c3) [category, right=3.5cm of center, yshift=0cm, draw=cat3, fill=cat3!20]
+    {Techniniai gebėjimai};
+\node (c3ex) [example, below=0.15cm of c3] {SQL, Python, R, vizualizacija};
+
+\node (c6) [category, left=3.5cm of center, yshift=0cm, draw=cat6, fill=cat6!20]
+    {Nuolatinis mokymasis};
+\node (c6ex) [example, below=0.15cm of c6] {profesinis tobulėjimas};
+
+% Bottom row
+\node (c4) [category, below right=2.5cm and -1cm of center, xshift=-4cm, draw=cat4, fill=cat4!20]
+    {Analitiniai gebėjimai};
+\node (c4ex) [example, below=0.15cm of c4] {algoritmų kūrimas, analizė};
+
+\node (c5) [category, below right=2.5cm and -1cm of center, xshift=4cm, draw=cat5, fill=cat5!20]
+    {Komunikacija};
+\node (c5ex) [example, below=0.15cm of c5] {tyrėjai, IT, verslas};
+
+% Arrows from center to competencies
+\draw [arrow, cat1] (center.north) -- ++(0,0.3) -| (c1.south);
+\draw [arrow, cat2] (center.north) -- ++(0,0.3) -| (c2.south);
+\draw [arrow, cat3] (center.east) -- (c3.west);
+\draw [arrow, cat6] (center.west) -- (c6.east);
+\draw [arrow, cat4] (center.south) -- ++(0,-0.3) -| (c4.north);
+\draw [arrow, cat5] (center.south) -- ++(0,-0.3) -| (c5.north);
+
+\end{tikzpicture}
+\end{document}
