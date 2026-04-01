@@ -8,30 +8,35 @@
 \definecolor{cat1}{RGB}{66, 165, 245}
 \definecolor{cat2}{RGB}{102, 187, 106}
 \definecolor{cat3}{RGB}{255, 167, 38}
-\definecolor{cat4}{RGB}{171, 71, 188}
+\definecolor{cat4}{RGB}{239, 83, 80}
+\definecolor{cat5}{RGB}{171, 71, 188}
 
 \tikzstyle{maintitle} = [rectangle, rounded corners=8pt, minimum width=5cm,
     minimum height=1.2cm, text centered, draw=mainblue, fill=mainblue,
     text=white, font=\bfseries\Large, drop shadow] \tikzstyle{stage} =
     [rectangle, rounded corners=5pt, minimum width=3.5cm, minimum height=1.4cm,
     text centered, font=\bfseries\small, drop shadow, text width=3.2cm]
-    \tikzstyle{item} = [rectangle, rounded corners=3pt, minimum width=3.2cm,
-    minimum height=0.55cm, text centered, font=\footnotesize]
+    \tikzstyle{item} = [rectangle, rounded corners=3pt, minimum width=3.5cm,
+    minimum height=0.55cm, text centered, font=\footnotesize, text width=3.2cm]
     \tikzstyle{bigarrow} = [ultra thick, ->, >=Stealth, mainblue!50]
+
+\hyphenpenalty=10000
 
 \begin{document}
 \begin{tikzpicture}[node distance=0.8cm]
 
 % Main title
-\node (main) [maintitle, text width=10cm] {Galimybių studijos metodikos etapai};
+\node (main) [maintitle, text width=12cm] {Galimybių studijos metodikos etapai};
 
 % Stages in a row
-\node (s1) [stage, below=1.8cm of main, xshift=-6.5cm, draw=cat1, fill=cat1!20]
+\node (s1) [stage, below=1.8cm of main, xshift=-8cm, draw=cat1, fill=cat1!20]
     {1. Teorinė-normatyvinė analizė}; \node (s2) [stage, below=1.8cm of main,
-    xshift=-2.2cm, draw=cat2, fill=cat2!20] {2. Esamos situacijos auditas};
-    \node (s3) [stage, below=1.8cm of main, xshift=2.2cm, draw=cat3,
+    xshift=-4cm, draw=cat2, fill=cat2!20] {2. Esamos situacijos auditas};
+    \node (s3) [stage, below=1.8cm of main, xshift=0cm, draw=cat3,
     fill=cat3!20] {3. \mbox{Analitinė} sintezė}; \node (s4) [stage, below=1.8cm of
-    main, xshift=6.5cm, draw=cat4, fill=cat4!20] {4. \mbox{Strateginis} planas};
+    main, xshift=4cm, draw=cat4, fill=cat4!20] {4. \mbox{Architektūriniai} modeliai};
+    \node (s5) [stage, below=1.8cm of main, xshift=8cm, draw=cat5, fill=cat5!20]
+    {5. \mbox{Strateginis} planas};
 
 % Stage 1 items
 \node (s1a) [item, below=0.5cm of s1, draw=cat1!60, fill=cat1!10] {ES/LT
@@ -52,25 +57,33 @@ analizė}; \node (s3b) [item, below=0.3cm of s3a, draw=cat3!60, fill=cat3!10]
 fill=cat3!10] {Scenarijų modeliavimas};
 
 % Stage 4 items
-\node (s4a) [item, below=0.5cm of s4, draw=cat4!60, fill=cat4!10] {Finansinis
-pagrindimas}; \node (s4b) [item, below=0.3cm of s4a, draw=cat4!60, fill=cat4!10]
-{Įgyvendinimo planas}; \node (s4c) [item, below=0.3cm of s4b, draw=cat4!60,
-fill=cat4!10] {Rizikų valdymas};
+\node (s4a) [item, below=0.5cm of s4, draw=cat4!60, fill=cat4!10] {EOSC
+architektūros modelis}; \node (s4b) [item, below=0.3cm of s4a, draw=cat4!60,
+fill=cat4!10] {Duomenų srautų modeliai}; \node (s4c) [item, below=0.3cm of s4b,
+draw=cat4!60, fill=cat4!10] {Infrastruktūrų žemėlapis};
+
+% Stage 5 items
+\node (s5a) [item, below=0.5cm of s5, draw=cat5!60, fill=cat5!10] {Finansinis
+pagrindimas}; \node (s5b) [item, below=0.3cm of s5a, draw=cat5!60, fill=cat5!10]
+{Įgyvendinimo planas}; \node (s5c) [item, below=0.3cm of s5b, draw=cat5!60,
+fill=cat5!10] {Rizikų valdymas};
 
 % Arrows from main to stages
 \draw [thick, ->, >=Stealth, cat1] (main.south) -- ++(0,-0.4) -| (s1.north);
 \draw [thick, ->, >=Stealth, cat2] (main.south) -- ++(0,-0.4) -| (s2.north);
 \draw [thick, ->, >=Stealth, cat3] (main.south) -- ++(0,-0.4) -| (s3.north);
 \draw [thick, ->, >=Stealth, cat4] (main.south) -- ++(0,-0.4) -| (s4.north);
+\draw [thick, ->, >=Stealth, cat5] (main.south) -- ++(0,-0.4) -| (s5.north);
 
 % Vertical connectors
 \draw [cat1, thick] (s1.south) -- (s1a.north); \draw [cat2, thick] (s2.south) --
 (s2a.north); \draw [cat3, thick] (s3.south) -- (s3a.north); \draw [cat4, thick]
-(s4.south) -- (s4a.north);
+(s4.south) -- (s4a.north); \draw [cat5, thick] (s5.south) -- (s5a.north);
 
 % Horizontal flow arrows between stages
 \draw [bigarrow] (s1.east) -- (s2.west); \draw [bigarrow] (s2.east) --
-(s3.west); \draw [bigarrow] (s3.east) -- (s4.west);
+(s3.west); \draw [bigarrow] (s3.east) -- (s4.west); \draw [bigarrow] (s4.east) --
+(s5.west);
 
 \end{tikzpicture}
 \end{document}
