@@ -24,17 +24,17 @@
 \begin{tikzpicture}
 
 % Central node
-\node (center) [maintitle, text width=6cm] {Duomenų stiuardo kompetencijos};
+\node (center) [maintitle, minimum width=9cm] {Duomenų valdytojų kompetencijos};
 
 % 6 competencies arranged around center
 % Top row
 \node (c1) [category, above right=2.5cm and -1cm of center, xshift=-4cm, draw=cat1, fill=cat1!20]
     {Duomenų valdymas};
-\node (c1ex) [example, below=0.15cm of c1] {vientisumas, saugumas, kokybė};
+\node (c1ex) [example, above=0.15cm of c1] {vientisumas, saugumas, kokybė};
 
 \node (c2) [category, above right=2.5cm and -1cm of center, xshift=4cm, draw=cat2, fill=cat2!20]
     {FAIR principų taikymas};
-\node (c2ex) [example, below=0.15cm of c2] {randami, prieinami, sąveikūs};
+\node (c2ex) [example, above=0.15cm of c2] {surandami, prieinami, sąveikūs};
 
 % Middle row
 \node (c3) [category, right=3.5cm of center, yshift=0cm, draw=cat3, fill=cat3!20]
@@ -59,8 +59,8 @@
 \draw [arrow, cat2] (center.north) -- ++(0,0.3) -| (c2.south);
 \draw [arrow, cat3] (center.east) -- (c3.west);
 \draw [arrow, cat6] (center.west) -- (c6.east);
-\draw [arrow, cat4] (center.south) -- ++(0,-0.3) -| (c4.north);
-\draw [arrow, cat5] (center.south) -- ++(0,-0.3) -| (c5.north);
+\draw [arrow, cat4] (center.south) -- ++(0,-0.9) -| (c4.north);
+\draw [arrow, cat5] (center.south) -- ++(0,-0.9) -| (c5.north);
 
 \end{tikzpicture}
 \end{document}

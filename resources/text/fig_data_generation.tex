@@ -4,76 +4,76 @@
 \usepackage[lithuanian]{babel}
 \usetikzlibrary{shapes.geometric, arrows.meta, positioning, shadows, fit, backgrounds}
 
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
 \definecolor{mainblue}{RGB}{41, 98, 255}
 \definecolor{cat1}{RGB}{66, 165, 245}
 \definecolor{cat2}{RGB}{102, 187, 106}
 \definecolor{cat3}{RGB}{255, 167, 38}
 \definecolor{cat4}{RGB}{171, 71, 188}
 \definecolor{cat5}{RGB}{239, 83, 80}
+\definecolor{cat6}{RGB}{38, 166, 154}
+\definecolor{cat7}{RGB}{121, 134, 203}
+\definecolor{cat8}{RGB}{255, 112, 67}
+\definecolor{cat9}{RGB}{158, 157, 36}
+\definecolor{cat10}{RGB}{0, 151, 167}
+\definecolor{cat11}{RGB}{216, 27, 96}
+\definecolor{cat12}{RGB}{109, 76, 65}
 
 \tikzstyle{maintitle} = [rectangle, rounded corners=8pt, minimum width=5cm, minimum height=1.2cm,
     text centered, draw=mainblue, fill=mainblue, text=white, font=\bfseries\Large, drop shadow]
-\tikzstyle{category} = [rectangle, rounded corners=5pt, minimum width=3.8cm, minimum height=0.9cm,
-    text centered, font=\bfseries\small, drop shadow]
-\tikzstyle{item} = [rectangle, rounded corners=3pt, minimum width=3.5cm, minimum height=0.55cm,
-    text centered, font=\footnotesize]
-\tikzstyle{example} = [rectangle, rounded corners=2pt, minimum width=3.5cm,
-    text centered, font=\scriptsize\itshape, text=gray!70!black]
+\tikzstyle{category} = [rectangle, rounded corners=5pt, minimum width=3.6cm, minimum height=0.9cm,
+    text centered, font=\bfseries\scriptsize, drop shadow, text width=3.4cm]
 \tikzstyle{arrow} = [thick, ->, >=Stealth]
 
 \begin{document}
 \begin{tikzpicture}[node distance=0.8cm]
 
-% Main title
-\node (main) [maintitle, text width=12cm] {Mokslinių duomenų klasifikacija pagal generavimo pobūdį};
+% Pagrindinis pavadinimas
+\node (main) [maintitle, text width=14cm] {Mokslinių duomenų klasifikacija pagal generavimo pobūdį};
 
-% Categories - 5 columns evenly spaced
-\node (stebej) [category, below=1.8cm of main, xshift=-8cm, draw=cat1, fill=cat1!20] {Stebėjimų};
-\node (eksper) [category, below=1.8cm of main, xshift=-4cm, draw=cat2, fill=cat2!20] {Eksperimentiniai};
-\node (simul) [category, below=1.8cm of main, xshift=0cm, draw=cat3, fill=cat3!20] {Simuliacijų};
-\node (isvest) [category, below=1.8cm of main, xshift=4cm, draw=cat4, fill=cat4!20] {Išvestiniai};
-\node (sintet) [category, below=1.8cm of main, xshift=8cm, draw=cat5, fill=cat5!20] {Sintetiniai};
+% 1 eilutės jungiamoji horizontali linija
+\coordinate (junc1) at ([yshift=-1cm]main.south);
+\draw [mainblue, thick] ([xshift=-9.5cm]junc1) -- ([xshift=9.5cm]junc1);
+\draw [mainblue, thick] (main.south) -- (junc1);
 
-% Stebėjimų items
-\node (jutikliai) [item, below=0.5cm of stebej, draw=cat1!60, fill=cat1!10] {Jutiklių rodmenys};
-\node (teleskopai) [item, below=0.3cm of jutikliai, draw=cat1!60, fill=cat1!10] {Teleskopų nuotraukos};
-\node (palydovai) [item, below=0.3cm of teleskopai, draw=cat1!60, fill=cat1!10] {Palydovų duomenys};
-\node (steb_ex) [example, below=0.2cm of palydovai] {(realaus laiko srautai)};
+% 1 eilutė – 6 kategorijos
+\node (c1) [category, below=2.2cm of main, xshift=-9.5cm, draw=cat1, fill=cat1!15] {Eksperimentiniai duomenys};
+\node (c2) [category, below=2.2cm of main, xshift=-5.7cm, draw=cat2, fill=cat2!15] {Stebėjimų duomenys};
+\node (c3) [category, below=2.2cm of main, xshift=-1.9cm, draw=cat3, fill=cat3!15] {Apklausų duomenys};
+\node (c4) [category, below=2.2cm of main, xshift=1.9cm, draw=cat4, fill=cat4!15] {Skaičiavimų / modeliavimo duomenys};
+\node (c5) [category, below=2.2cm of main, xshift=5.7cm, draw=cat5, fill=cat5!15] {Tekstiniai ir dokumentiniai duomenys};
+\node (c6) [category, below=2.2cm of main, xshift=9.5cm, draw=cat6, fill=cat6!15] {Vaizdiniai duomenys};
 
-% Eksperimentiniai items
-\node (genai) [item, below=0.5cm of eksper, draw=cat2!60, fill=cat2!10] {Genų sekos};
-\node (chromat) [item, below=0.3cm of genai, draw=cat2!60, fill=cat2!10] {Chromatogramos};
-\node (labmat) [item, below=0.3cm of chromat, draw=cat2!60, fill=cat2!10] {Lab. matavimai};
-\node (eksp_ex) [example, below=0.2cm of labmat] {(dažnai patentuoti formatai)};
+% Rodyklės į 1 eilutę
+\draw [arrow, cat1] ([xshift=-9.5cm]junc1) -- (c1.north);
+\draw [arrow, cat2] ([xshift=-5.7cm]junc1) -- (c2.north);
+\draw [arrow, cat3] ([xshift=-1.9cm]junc1) -- (c3.north);
+\draw [arrow, cat4] ([xshift=1.9cm]junc1) -- (c4.north);
+\draw [arrow, cat5] ([xshift=5.7cm]junc1) -- (c5.north);
+\draw [arrow, cat6] ([xshift=9.5cm]junc1) -- (c6.north);
 
-% Simuliacijų items
-\node (klimatas) [item, below=0.5cm of simul, draw=cat3!60, fill=cat3!10] {Klimato modeliai};
-\node (moldin) [item, below=0.3cm of klimatas, draw=cat3!60, fill=cat3!10] {Molekulinė dinamika};
-\node (simul_ex) [example, below=0.2cm of moldin] {(NetCDF, HDF5)};
+% 2 eilutės jungiamoji horizontali linija (po 1 eilutės apačia)
+\coordinate (junc2) at ([yshift=-4cm]main.south);
+\draw [mainblue, thick] ([xshift=-9.5cm]junc2) -- ([xshift=9.5cm]junc2);
+\draw [mainblue, thick] (junc1) -- (junc2);
 
-% Išvestiniai items
-\node (metaan) [item, below=0.5cm of isvest, draw=cat4!60, fill=cat4!10] {Metaanalizės};
-\node (mlrez) [item, below=0.3cm of metaan, draw=cat4!60, fill=cat4!10] {ML modelių rezultatai};
-\node (isv_ex) [example, below=0.2cm of mlrez] {(data mining)};
+% 2 eilutė – 6 kategorijos
+\node (c7) [category, below=5.2cm of main, xshift=-9.5cm, draw=cat7, fill=cat7!15] {Erdviniai duomenys};
+\node (c8) [category, below=5.2cm of main, xshift=-5.7cm, draw=cat8, fill=cat8!15] {Audio ir video duomenys};
+\node (c9) [category, below=5.2cm of main, xshift=-1.9cm, draw=cat9, fill=cat9!15] {Išvestiniai (antriniai) duomenys};
+\node (c10) [category, below=5.2cm of main, xshift=1.9cm, draw=cat10, fill=cat10!15] {Programinės įrangos ir kodo duomenys};
+\node (c11) [category, below=5.2cm of main, xshift=5.7cm, draw=cat11, fill=cat11!15] {Interaktyvūs ir 3D ištekliai};
+\node (c12) [category, below=5.2cm of main, xshift=9.5cm, draw=cat12, fill=cat12!15] {Skaitmenizuoti archyviniai šaltiniai};
 
-% Sintetiniai items
-\node (ditren) [item, below=0.5cm of sintet, draw=cat5!60, fill=cat5!10] {DI treniravimo duomenys};
-\node (privim) [item, below=0.3cm of ditren, draw=cat5!60, fill=cat5!10] {Privatumo imitacijos};
-\node (sint_ex) [example, below=0.2cm of privim] {(mažų imčių sprendimas)};
-
-% Arrows from main to categories
-\draw [arrow, cat1] (main.south) -- ++(0,-0.4) -| (stebej.north);
-\draw [arrow, cat2] (main.south) -- ++(0,-0.4) -| (eksper.north);
-\draw [arrow, cat3] (main.south) -- ++(0,-0.4) -| (simul.north);
-\draw [arrow, cat4] (main.south) -- ++(0,-0.4) -| (isvest.north);
-\draw [arrow, cat5] (main.south) -- ++(0,-0.4) -| (sintet.north);
-
-% Vertical connectors
-\draw [cat1, thick] (stebej.south) -- (jutikliai.north);
-\draw [cat2, thick] (eksper.south) -- (genai.north);
-\draw [cat3, thick] (simul.south) -- (klimatas.north);
-\draw [cat4, thick] (isvest.south) -- (metaan.north);
-\draw [cat5, thick] (sintet.south) -- (ditren.north);
+% Rodyklės į 2 eilutę
+\draw [arrow, cat7] ([xshift=-9.5cm]junc2) -- (c7.north);
+\draw [arrow, cat8] ([xshift=-5.7cm]junc2) -- (c8.north);
+\draw [arrow, cat9] ([xshift=-1.9cm]junc2) -- (c9.north);
+\draw [arrow, cat10] ([xshift=1.9cm]junc2) -- (c10.north);
+\draw [arrow, cat11] ([xshift=5.7cm]junc2) -- (c11.north);
+\draw [arrow, cat12] ([xshift=9.5cm]junc2) -- (c12.north);
 
 \end{tikzpicture}
 \end{document}
